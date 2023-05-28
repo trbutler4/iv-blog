@@ -15,6 +15,7 @@ const Navbar = () => {
             <Box marginLeft="auto" marginRight={0}>
             <Button as={Link} to="/" variant="ghost"  mr={4}>Home</Button>
             <Button as={Link} to="/about" variant="ghost"  mr={4}>About</Button>
+            <Button as={Link} to="/blog" variant="ghost"  mr={4}>Blog</Button>
             </Box>
         </Box>
 

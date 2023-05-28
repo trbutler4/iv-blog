@@ -1,10 +1,19 @@
 import React from 'react';
+import {
+    Text,
+    Box
+} from '@chakra-ui/react';
 
-const About = () => {
+function About() {
     return(
-        <>
-            <h1>about page</h1>
-        </>
+        <Box m={10}>
+            <Text>
+                This is entended to be a place to share my thoughts and ideas in the hope
+                that someone will find them useful. I will be wrong often, and I hope that
+                I will be corrected. I do not claim to be an expert in any of the topics
+                that I am going to write about.
+            </Text>
+        </Box>
     )
 }
 
