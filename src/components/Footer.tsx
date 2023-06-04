@@ -24,7 +24,7 @@ function Footer() {
         <br />
         <br />
         <Box w="100%" p={4} display="flex" justifyContent="center">
-            <Text >Created by trbv.eth</Text>
+            <Text >Created by trbiv.eth</Text>
         </Box>
         </>
     )
