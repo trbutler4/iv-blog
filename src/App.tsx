@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Blog from './pages/Blog';
 import Footer from './components/Footer';
-import React from 'react';
+import Post from './pages/Post';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Box } from '@chakra-ui/react';
 
@@ -17,6 +17,7 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/about" element={<About/>}/>
                 <Route path="/blog" element={<Blog/>}/>
+                <Route path="/post" element={<Post/>}/>
             </Routes>
 
             <Footer />
