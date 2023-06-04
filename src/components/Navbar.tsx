@@ -9,7 +9,7 @@ import {
 const Navbar = () => {
     return (
 
-        <Box w="100%" p={4} display="flex">
+        <Box background="#FAF9F6" w="100%" p={4} display="flex">
             <Text fontSize="xl" fontWeight="bold">IV</Text>
 
             <Box marginLeft="auto" marginRight={0}>
