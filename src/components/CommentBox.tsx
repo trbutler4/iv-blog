@@ -1,7 +1,9 @@
 import {
     Box,
     Textarea,
-    Button
+    Button,
+    HStack,
+    Text
 } from '@chakra-ui/react';
 
 function CommentBox() {
@@ -9,10 +11,11 @@ function CommentBox() {
     return (
         <Box m={20}> 
             <Textarea placeholder='Add your thoughts' />   
-           
-            <Box>
+            
+            <HStack justify='space-between' align='center'>
+                <Text>Address or ENS name here</Text>
                 <Button>Comment</Button>
-            </Box>
+            </HStack>
         </Box>
     )
 }
