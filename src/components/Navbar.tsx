@@ -14,10 +14,10 @@ const Navbar = () => {
             <Text fontSize="xl" fontWeight="bold">IV</Text>
 
             <Box marginLeft="auto" marginRight={0}>
-            <Button as={Link} to="/" variant="ghost"  mr={4}>Home</Button>
-            <Button as={Link} to="/about" variant="ghost"  mr={4}>About</Button>
-            <Button as={Link} to="/blog" variant="ghost"  mr={4}>Blog</Button>
-            <ConnectWalletButton />
+                <Button as={Link} to="/" variant="ghost"  mr={4}>Home</Button>
+                <Button as={Link} to="/about" variant="ghost"  mr={4}>About</Button>
+                <Button as={Link} to="/blog" variant="ghost"  mr={4}>Blog</Button>
+                <ConnectWalletButton />
             </Box>
         </Box>
 
