@@ -32,4 +32,4 @@ sc/out
 sc/artifacts
 
 # client side stuff 
-#client/node_modules
+client/node_modules
