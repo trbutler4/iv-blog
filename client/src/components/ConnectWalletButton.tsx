@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
     Button,
 } from '@chakra-ui/react';
-import detectEthereumProvider from '@metamask/detect-provider';
+import { getAccount } from '../interfaces/metamask_interface';
 
 declare global {
     interface Window {
@@ -13,29 +13,10 @@ declare global {
 function ConnectWalletButton() {
     const [buttonText, setButtonText] = React.useState("Connect Wallet");
 
-    async function connectWallet() {
-        const provider = await detectEthereumProvider();
-        if (provider) {
-
-            // get accounts
-            const accounts = await window.ethereum.request({ 
-                method: 'eth_requestAccounts' 
-            }).catch((err: any) => {
-                if (err.code === 4001) {
-                    console.log("user rejected request")
-                } else {
-                    console.log(err)
-                }
-            })
-
-            // connect account 
-            const account = accounts[0]
-            console.log(`account: ${account}`)
-            setButtonText(`${account.slice(0, 6)}...`)
-            
-        } else {
-            console.log("metamask not detected")
-        }
+    function connectWallet() {
+        getAccount().then((account) => {
+            setButtonText(`${account.slice(0,6)}...`)
+        })
     }
 
     return (

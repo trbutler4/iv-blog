@@ -30,3 +30,6 @@ sc/node_modules
 sc/lib
 sc/out
 sc/artifacts
+
+# client side stuff 
+#client/node_modules
