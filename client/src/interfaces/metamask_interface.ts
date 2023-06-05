@@ -16,8 +16,10 @@ export async function getAccount() {
         }).catch((err: any) => {
             if (err.code === 4001) {
                 console.log("user rejected request")
+                return err
             } else {
                 console.log(err)
+                return err
             }
         })
 

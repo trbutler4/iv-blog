@@ -1,26 +1,39 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Button,
 } from '@chakra-ui/react';
 import { getAccount } from '../interfaces/metamask_interface';
 
-declare global {
-    interface Window {
-        ethereum?: any;
-    }
-}
-
 function ConnectWalletButton() {
-    const [buttonText, setButtonText] = React.useState("Connect Wallet");
+    const [account, setAccount] = useState("");
 
-    function connectWallet() {
-        getAccount().then((account) => {
-            setButtonText(`${account.slice(0,6)}...`)
-        })
+    const fetchAccount = async () => {
+        const account = await getAccount();
+        if (account) {
+            setAccount(account)
+        }
     }
+
+    const connectAccount = async () => {
+        const account = await getAccount();
+        if (account) {
+            setAccount(account)
+        }
+    }
+
+    useEffect(() => {
+        fetchAccount()
+    }, []);
+
 
     return (
-        <Button onClick={connectWallet}>{`${buttonText}`}</Button>
+        <>
+        {account ? (
+            <Button> {`${account.slice(0,6)}...`} </Button>
+        ) : (
+            <Button onClick={connectAccount}>Connect Account</Button>
+        )}
+        </>
     )
 }
 
