@@ -5,8 +5,8 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import Footer from './components/Footer';
 import Post from './pages/Post';
+import CreatePost from './pages/CreatePost';
 import { ChakraProvider } from '@chakra-ui/react';
-import { Box } from '@chakra-ui/react';
 
 function App() {
     return (
@@ -18,6 +18,7 @@ function App() {
                 <Route path="/about" element={<About/>}/>
                 <Route path="/blog" element={<Blog/>}/>
                 <Route path="/post" element={<Post/>}/>
+                <Route path="/create" element={<CreatePost/>}/>
             </Routes>
 
             <Footer />
