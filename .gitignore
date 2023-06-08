@@ -25,11 +25,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# smart contract stuff
-sc/node_modules
-sc/lib
-sc/out
-sc/artifacts
 
 # client side stuff 
 client/node_modules
+
+# founry stuff
+contracts/.env
