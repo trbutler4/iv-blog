@@ -796,10 +796,10 @@
         }
       }
     },
-    "script/Counter.s.sol": {
-      "lastModificationDate": 1686265531261,
-      "contentHash": "0705c52104730a78aef4aa6694175c81",
-      "sourceName": "script/Counter.s.sol",
+    "script/Deploy.s.sol": {
+      "lastModificationDate": 1686266559590,
+      "contentHash": "614a4ec1fa7b180408e0c3798c9788b1",
+      "sourceName": "script/Deploy.s.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
@@ -840,12 +840,13 @@
         "lib/forge-std/src/Vm.sol",
         "lib/forge-std/src/console.sol",
         "lib/forge-std/src/console2.sol",
-        "lib/forge-std/src/interfaces/IMulticall3.sol"
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "src/Blog.sol"
       ],
       "versionRequirement": "^0.8.13",
       "artifacts": {
-        "CounterScript": {
-          "0.8.17+commit.8df45f5f.Linux.gcc": "Counter.s.sol/CounterScript.json"
+        "DeployScript": {
+          "0.8.17+commit.8df45f5f.Linux.gcc": "Deploy.s.sol/DeployScript.json"
         }
       }
     },
