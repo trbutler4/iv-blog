@@ -1,6 +1,5 @@
 
 import {
-    Box,
     Text,
     LinkBox,
     LinkOverlay
@@ -8,12 +7,13 @@ import {
 
 interface IPostPreview {
     title: string
+    author: string
 }
-export default function PostPreview({ title }: IPostPreview) {
+export default function PostPreview({ title, author }: IPostPreview) {
     return (
-        <LinkBox m={10} background="gray">
-            <LinkOverlay href='#/post'>
-                {title}    
+        <LinkBox m={5} background="gray.300" marginX={20}>
+            <LinkOverlay href='#/post' textAlign="center">
+                <Text>{title} -- {author}</Text>
             </LinkOverlay>
         </LinkBox>
     );

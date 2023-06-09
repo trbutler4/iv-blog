@@ -32,7 +32,7 @@ const Navbar = () => {
                 <Button as={Link} to="/about" variant="ghost"  mr={4}>About</Button>
                 <Button as={Link} to="/blog" variant="ghost"  mr={4}>Blog</Button>
                 {admin && (
-                    <Button as={Link} to="/create" variant="ghost" mr={4}>Create</Button>
+                    <Button as={Link} to="/Upload" variant="ghost" mr={4}>Upload</Button>
                 )}
                 <ConnectWalletButton />
             </Box>

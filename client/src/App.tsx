@@ -5,7 +5,7 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import Footer from './components/Footer';
 import Post from './pages/Post';
-import CreatePost from './pages/CreatePost';
+import UploadPost from './pages/UploadPost';
 import { ChakraProvider } from '@chakra-ui/react';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
                 <Route path="/about" element={<About/>}/>
                 <Route path="/blog" element={<Blog/>}/>
                 <Route path="/post" element={<Post/>}/>
-                <Route path="/create" element={<CreatePost/>}/>
+                <Route path="/upload" element={<UploadPost/>}/>
             </Routes>
 
             <Footer />

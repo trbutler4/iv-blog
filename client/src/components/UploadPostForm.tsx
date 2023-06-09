@@ -7,7 +7,7 @@ import {
 import React, { useState } from 'react';
 import { createPost } from '../interfaces/contract_interface';
 
-function CreatePostForm() {
+function UploadPostForm() {
     const [title, setTitle] = useState("")
     const [cid, setCid] = useState("")
 
@@ -43,4 +43,4 @@ function CreatePostForm() {
     )
 }
 
-export default CreatePostForm;
+export default UploadPostForm;
