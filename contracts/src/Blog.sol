@@ -4,6 +4,7 @@ pragma solidity ^0.8.13;
 contract Blog {
 
     struct Post {
+        string title;
         string cid;
         address author;
     }
@@ -12,8 +13,8 @@ contract Blog {
 
     uint256 postId = 0;
 
-    function createPost(string memory _cid) public {
-        posts[postId] = Post (_cid, msg.sender);
+    function createPost(string memory _title, string memory _cid) public {
+        posts[postId] = Post (_title, _cid, msg.sender);
         postId += 1;
     }
 

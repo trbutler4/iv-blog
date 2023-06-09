@@ -851,8 +851,8 @@
       }
     },
     "src/Blog.sol": {
-      "lastModificationDate": 1686254281242,
-      "contentHash": "f29b43511463368da46f5fa04ff762b6",
+      "lastModificationDate": 1686268722382,
+      "contentHash": "e79bade8b2718d0be65b5ed5466ddb40",
       "sourceName": "src/Blog.sol",
       "solcConfig": {
         "settings": {
@@ -891,8 +891,8 @@
       }
     },
     "test/Blog.t.sol": {
-      "lastModificationDate": 1686265633241,
-      "contentHash": "a390270a144a529243a2839e07224973",
+      "lastModificationDate": 1686268775994,
+      "contentHash": "239ea2d98f4bcc9e0248e0a2a767348c",
       "sourceName": "test/Blog.t.sol",
       "solcConfig": {
         "settings": {

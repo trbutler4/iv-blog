@@ -5,7 +5,7 @@ import {
     Input 
 } from '@chakra-ui/react'
 import React, { useState } from 'react';
-
+import { createPost } from '../interfaces/contract_interface';
 
 function CreatePostForm() {
     const [title, setTitle] = useState("")
@@ -15,6 +15,9 @@ function CreatePostForm() {
         // TODO: call smart contract function with post title and cid
         console.log(`title: ${title}`)
         console.log(`cid: ${cid}`)
+        createPost(title, cid).then((r) => (
+            console.log(r)
+        ))
     }
 
     return (
