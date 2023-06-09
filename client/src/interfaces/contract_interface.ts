@@ -21,5 +21,30 @@ export async function createPost(title: string, cid: string) {
 export async function getPostById(postId: number) {
   const blog = await getContractRef();
   console.log(`getting post ${postId}...`);
-  return await blog.getPost(postId);
+  const post = await blog.getPost(postId);
+  return {
+    title: post[0],
+    cid: post[1],
+    author: post[2]
+  }
+}
+
+export async function getCurrentPostId() {
+  const blog = await getContractRef();
+  const postId = await blog.getCurrentPostId();
+  return postId;
+  
+}
+
+export async function getAllPosts() {
+  const blog = await getContractRef();
+  const currentPostId = await blog.getCurrentPostId();
+  
+  let posts = [];
+  for (let i = 0; i < currentPostId; i++) {
+    const p = await blog.getPost(i);
+    posts.push(p);
+  }
+
+  return posts;
 }
