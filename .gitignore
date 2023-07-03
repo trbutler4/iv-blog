@@ -33,3 +33,4 @@ client/node_modules
 contracts/.env
 contracts/broadcast
 contracts/out
+contracts/lib
