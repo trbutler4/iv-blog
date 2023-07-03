@@ -31,3 +31,5 @@ client/node_modules
 
 # founry stuff
 contracts/.env
+contracts/broadcast
+contracts/out
