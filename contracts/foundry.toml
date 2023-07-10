@@ -9,5 +9,5 @@ mumbai = "${MUMBAI_RPC_URL}"
 
 [etherscan]
 sepolia = { key = "${ETHERSCAN_API_KEY}" }
-mumbai = { key = "${ETHERSCAN_API_KEY}" }
+mumbai = { key = "${POLYGONSCAN_API_KEY}" }
 
