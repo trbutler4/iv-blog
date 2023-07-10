@@ -14,13 +14,15 @@ contract BlogTest is Test {
     function testCreatePost() public {
         string memory cid = "cid_string";
         string memory title = "TITLE";
-        blog.createPost(title, cid);
+        string memory url = "URL";
+        blog.createPost(title, cid, url);
 
         uint256 postId = blog.getCurrentPostId();
         Blog.Post memory post = blog.getPost(postId - 1);
     
         assertEq(post.title, title, "incorrect title");
         assertEq(post.cid, cid, "incorrect CID");
+        assertEq(post.url, url, "incorrect URL");
         assertEq(post.author, address(this), "incorrect author");
     }
 
