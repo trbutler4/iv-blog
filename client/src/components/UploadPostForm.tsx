@@ -10,12 +10,14 @@ import { createPost } from '../interfaces/contract_interface';
 function UploadPostForm() {
     const [title, setTitle] = useState("")
     const [cid, setCid] = useState("")
+    const [url, setUrl] = useState("")
 
-    function uploadPost(title: string, cid: string) {
+    function uploadPost(title: string, cid: string, url: string) {
         // TODO: call smart contract function with post title and cid
         console.log(`title: ${title}`)
         console.log(`cid: ${cid}`)
-        createPost(title, cid).then((r) => (
+        console.log(`url: ${url}`)
+        createPost(title, cid, url).then((r) => (
             console.log(r)
         ))
     }
@@ -36,8 +38,13 @@ function UploadPostForm() {
                 size='lg' 
                 onChange={(e) => setCid(e.target.value)}
             /> 
+            <Input 
+                placeholder='URL' 
+                size='lg' 
+                onChange={(e) => setCid(e.target.value)}
+            /> 
             <Button
-                onClick={() => uploadPost(title, cid)} 
+                onClick={() => uploadPost(title, cid, url)} 
             >Upload</Button>
         </Box>
     )

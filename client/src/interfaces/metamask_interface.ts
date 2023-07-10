@@ -34,8 +34,12 @@ export async function getAccount() {
 }
 
 export async function isAdmin() {
+    const adminAccounts = [
+        "0xf0017157524793829f29fb67a4df21eaeee87578",
+        "0x6c3b7ffcec38f3a995a714991ffcd7ea5f37a56b"
+    ]
     const account = await getAccount();
-    if (account === "0xf0017157524793829f29fb67a4df21eaeee87578") {
+    if (adminAccounts.includes(account.toLowerCase())) {
         console.log(`${account} is admin`)
         return true;
     }

@@ -1,21 +1,22 @@
 import { Contract, BrowserProvider } from "ethers";
 import { get } from "http";
+import contractInfo from "../contractInfo.json";
 
 const provider = new BrowserProvider(window.ethereum);
 
-const contractAbi = [{"inputs":[{"internalType":"string","name":"_title","type":"string"},{"internalType":"string","name":"_cid","type":"string"}],"name":"createPost","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getCurrentPostId","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_postId","type":"uint256"}],"name":"getPost","outputs":[{"components":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"cid","type":"string"},{"internalType":"address","name":"author","type":"address"}],"internalType":"struct Blog.Post","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"posts","outputs":[{"internalType":"string","name":"title","type":"string"},{"internalType":"string","name":"cid","type":"string"},{"internalType":"address","name":"author","type":"address"}],"stateMutability":"view","type":"function"}]
-
-const contractAddress = "0x3A77966834832939670ABeeEaDBe423696faA113"
+// TODO: update these to manage better based on dev/prod 
+const contractAbi = contractInfo.abi;
+const contractAddress = "0x65eaDd42362d714cA0Dac01D0856bCDD40749c95"
 
 async function getContractRef() {
   const signer = await provider.getSigner();
   return new Contract(contractAddress, contractAbi, signer);
 };
 
-export async function createPost(title: string, cid: string) {
+export async function createPost(title: string, cid: string, url: string) {
   const blog = await getContractRef();
   console.log("creating post...")
-  return await blog.createPost(title, cid);
+  return await blog.createPost(title, cid, url);
 }
 
 export async function getPostById(postId: number) {
@@ -25,7 +26,8 @@ export async function getPostById(postId: number) {
   return {
     title: post[0],
     cid: post[1],
-    author: post[2]
+    url: post[2],
+    author: post[3]
   }
 }
 
