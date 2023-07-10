@@ -6,6 +6,7 @@ contract Blog {
     struct Post {
         string title;
         string cid;
+        string url;
         address author;
     }
 
@@ -13,8 +14,12 @@ contract Blog {
 
     uint256 postId = 0;
 
-    function createPost(string memory _title, string memory _cid) public {
-        posts[postId] = Post (_title, _cid, msg.sender);
+    function createPost(
+        string memory _title, 
+        string memory _cid, 
+        string memory _url
+    ) public {
+        posts[postId] = Post (_title, _cid, _url, msg.sender);
         postId += 1;
     }
 
