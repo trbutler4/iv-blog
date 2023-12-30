@@ -1,7 +1,4 @@
 import * as React from 'react';
-import {
-    Button,
-} from '@chakra-ui/react';
 import detectEthereumProvider from '@metamask/detect-provider';
 
 declare global {
@@ -39,7 +36,7 @@ function ConnectWalletButton() {
     }
 
     return (
-        <Button onClick={connectWallet}>{`${buttonText}`}</Button>
+        <button onClick={connectWallet}>{`${buttonText}`}</button>
     )
 }
 

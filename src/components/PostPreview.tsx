@@ -6,20 +6,18 @@ import {
 
 function PostPreview() {
     return (
-        <Box m={10} background="gray">
+        <div>
 
-            <Box display="flex">
-                <Text>Post Title</Text>
-                <Text marginLeft="auto">Post Date</Text>
-            </Box>
+            <div >
+                <p>Post Title</p>
+                <p >Post Date</p>
+            </div>
 
-            <Box p={10}>
-                <Text>
-                    This is going to be a preview of the blog post contents.
-                    It will be a short preview of the contents of the blog post.
-                </Text>
-            </Box>
-        </Box>
+            <p>
+                This is going to be a preview of the blog post contents.
+                It will be a short preview of the contents of the blog post.
+            </p>
+        </div>
     );
 }
 
