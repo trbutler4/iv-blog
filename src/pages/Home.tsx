@@ -3,8 +3,8 @@ import ArticlePreview from '../components/ArticlePreview';
 
 const Home = () => {
     return(
-        <div className="flex flex-col p-10"> 
-            <ArticlePreview date="2021-10-01" title="First Post" />
+        <div className="flex flex-col p-20"> 
+            <ArticlePreview date="2023-12-30" title="Hello World" />
         </div>
     )
 }
