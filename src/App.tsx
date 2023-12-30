@@ -5,6 +5,7 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import Footer from './components/Footer';
 import React from 'react';
+import "./index.css";
 
 function App() {
     return (

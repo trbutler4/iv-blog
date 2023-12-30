@@ -2,7 +2,7 @@
 
 function Footer() {
     return (
-        <div>
+        <div className="flex justify-center">
             <p>Created by TRBIV.eth</p>
         </div>
     )

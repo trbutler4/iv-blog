@@ -1,8 +1,4 @@
 import React from 'react';
-import {
-    Text,
-    Box
-} from '@chakra-ui/react';
 
 function About() {
     return(
