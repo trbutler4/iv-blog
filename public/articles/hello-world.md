@@ -1,5 +1,9 @@
 # Hello World
 
+# h1 
+## h2 
+### h3
+
 This is just an example of a markdown article. 
 
 ### Here is a sub heading 
@@ -8,7 +12,7 @@ This is just an example of a markdown article.
 
 **some bold here** 
 
-#### here is a paragraph
+## here is a paragraph
 hello world, hello world, hello world, hello world,
 hello world, hello world, hello world, hello world,
 hello world, hello world, hello world, hello world,
@@ -23,10 +27,10 @@ hello world, hello world, hello world, hello world,
 hello world, hello world, hello world, hello world,
 
 
-#### how about an image?
+## how about an image?
 
 
-# some terminal commands
+### some terminal commands
 ```bash 
 sudo rm -rf /
 ```

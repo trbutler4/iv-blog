@@ -2,7 +2,7 @@ import React from 'react';
 
 function About() {
     return(
-        <div>
+        <div className="p-20">
             <p>
                 This is entended to be a place to share my thoughts and ideas in the hope
                 that someone will find them useful. I will be wrong often, and I hope that

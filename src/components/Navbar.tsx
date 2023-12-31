@@ -1,4 +1,5 @@
 import ConnectWalletButton from './ConnectWalletButton';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return (
@@ -9,8 +10,8 @@ const Navbar = () => {
             </div>
 
             <div>
-                <button className="ml-2">Home</button>
-                <button className="ml-2">About</button>
+                <Link to="/" className="ml-2">Home</Link>
+                <Link to="/about" className="ml-2">About</Link>
             </div>
         </div>
 
