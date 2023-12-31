@@ -10,13 +10,18 @@ export default function ArticleContainer({
 
     useEffect(() => {
         fetch(`/articles/${articleId}.md`)
-            .then((response) => response.text())
-            .then((text) => setMarkdown(text))
+            .then((response) => {
+                console.log('Content-Type:', response.headers.get('Content-Type'));
+                return response.text();
+            })
+            .then((text) => {
+                console.log('Response text:', text);
+                setMarkdown(text);
+            });
     }, [articleId]);
 
-
     return (
-        <div className="p-20">
+        <div className="p-20 prose">
             <Markdown>{markdown}</Markdown>
         </div>
     )

@@ -1,5 +1,4 @@
-
-# Hello World 
+# Hello World
 
 This is just an example of a markdown article. 
 
