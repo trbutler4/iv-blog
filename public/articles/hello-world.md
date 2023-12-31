@@ -28,6 +28,7 @@ hello world, hello world, hello world, hello world,
 
 
 ## how about an image?
+![](images/ethchi_flag.jpg)
 
 
 ### some terminal commands
