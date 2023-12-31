@@ -13,7 +13,7 @@ export default function Article() {
     )
 
     return (
-        <div>
+        <div className="flex flex-col justify-center items-center">
             <ArticleContainer articleId={articleId}/>
         </div>
     )
