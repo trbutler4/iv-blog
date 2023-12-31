@@ -4,7 +4,7 @@ import ArticlePreview from '../components/ArticlePreview';
 const Home = () => {
     return(
         <div className="flex flex-col p-20"> 
-            <ArticlePreview date="2023-12-30" title="Hello World" />
+            <ArticlePreview date="2023-12-30" title="Hello World" articlePath="hello-world" />
         </div>
     )
 }

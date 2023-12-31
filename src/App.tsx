@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Blog from './pages/Blog';
 import Footer from './components/Footer';
+import Article from './pages/Article';
 import React from 'react';
 import "./index.css";
 
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Home/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/blog" element={<Blog/>}/>
+            <Route path="/articles/:articleId" element={<Article/>}/>
         </Routes>
 
         <Footer />
