@@ -33,5 +33,5 @@ hello world, hello world, hello world, hello world,
 
 ### some terminal commands
 ```bash 
-sudo rm -rf /
+echo "hello world"
 ```
