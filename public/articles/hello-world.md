@@ -7,7 +7,6 @@ This is just an example of a markdown article.
 
 *some italics here*
 
-
 **some bold here** 
 
 #### here is a paragraph
@@ -26,3 +25,9 @@ hello world, hello world, hello world, hello world,
 
 
 #### how about an image?
+
+
+# some terminal commands
+```bash 
+sudo rm -rf /
+```

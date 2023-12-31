@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Markdown from "react-markdown";
 
 export default function ArticleContainer({
     articleId,
@@ -15,10 +16,8 @@ export default function ArticleContainer({
 
 
     return (
-        <div>
-            <p>Article Container</p>
-            <p>{articleId}</p>
-            <p>{markdown}</p>
+        <div className="p-20">
+            <Markdown>{markdown}</Markdown>
         </div>
     )
 }
