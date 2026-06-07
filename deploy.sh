@@ -9,6 +9,7 @@ echo "Building..."
 yarn build
 
 echo "Deploying to $VPS_USER@$VPS_HOST:$DEPLOY_DIR..."
+ssh "$VPS_USER@$VPS_HOST" "mkdir -p $DEPLOY_DIR"
 scp -r build/* "$VPS_USER@$VPS_HOST:$DEPLOY_DIR/"
 
 echo "Done."
