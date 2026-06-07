@@ -1,5 +1,5 @@
 trbiv.com {
-	root * /srv/iv-blog
+	root * /home/trbiv/iv-blog
 	file_server
 	encode gzip
 	try_files {path} /index.html
