@@ -21,7 +21,7 @@ export default function ArticleContainer({
     }, [articleId]);
 
     return (
-        <div className="p-20 prose prose-lg max-w-6xl mx-auto">
+        <div className="px-4 py-8 md:px-20 md:py-20 prose prose-lg max-w-6xl mx-auto">
             <Markdown>{markdown}</Markdown>
         </div>
     )
