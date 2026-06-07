@@ -21,7 +21,7 @@ export default function ArticleContainer({
     }, [articleId]);
 
     return (
-        <div className="p-20 prose">
+        <div className="p-20 prose prose-lg max-w-6xl mx-auto">
             <Markdown>{markdown}</Markdown>
         </div>
     )
