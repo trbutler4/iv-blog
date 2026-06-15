@@ -1,4 +1,4 @@
-# Meeting God in Peru
+# A Journey Into Myself
 
 This is a personal account of a Master Plant Dieta in Peru from my perspective. 
 Others may have a different perspective, and certainly had different experiences in ceremony and dream work.
