@@ -1,11 +1,9 @@
-NOTES (TODO):
-- at beginning uses a lot of descriptive literary devices (river cut through like a snake) -- do more of this
+# Meeting God in Peru
 
-# Peru Trip (name this better)
-
-This is a personal account of our trip to Peru from my perspective. Others may have a different perspective, and certainly had different experiences in ceremony and dream work.
-I can't speak for them, I can only speak for me.
-However, this will still be about many aspects that we all experienced, so it should be a good summary of the trip.
+This is a personal account of a Master Plant Dieta in Peru from my perspective. 
+Others may have a different perspective, and certainly had different experiences in ceremony and dream work.
+I can't speak for them, I can only speak for myself.
+However, this will still be about many aspects that we all experienced, so it should be a good summary of our shared experience.
 
 ## Arriving in Peru 
 
@@ -18,7 +16,7 @@ As we approached the airport in Pucullpa, the vegetation also began to be broken
 We would be the only plane coming in, there was only room for one airplane at the gate.
 The first thing I noticed as we got off the plane, walking down the stairs onto the tarmac, was the smell.
 The air was thick with a fresh fragrance.
-I breathed in, tasting the life and nature that can only come from being surrounded by nature.
+I breathed in, tasting the life on the air that can only come from being surrounded by nature.
 There was a juice and food stand, the only real food in the quaint airport, serving fresh juices, smoothies, empanadas, traditional peruvian fare. 
 We immediately descended upon it, but there wasn't time for everyone to get juice.
 Txana, our Curandero and spiritual guide, arrived quickly in a motokar, which is basically a motorcycle, but the rear end is a bench seat, enclosed with plastic.
@@ -39,12 +37,17 @@ After a brief hangup leaving the airport parking lot, as the driver was inside t
 We turned out of the airport parking lot, into the hustle and bustle of Pucullpa.
 The first thing I noticed was the almost complete lack of real cars. "Motokars" (the spelling is because that is what is written on them)
 were the primary form of transportation, followed by normal motorbikes, and finally, rarely, a full sized automobile.
-We sped through the town, which was made up mostly of ramshackle tin-roofed buildings. The homes and businesses shared the same facade, without
-signs denoting storefronts from residences you would not tell the difference.
+The motokar drivers, in an effort to protect themselves from the intense sun in Pucullpa, wear button up shirts, backwards over their arms.
+Clinging to our luggage, we sped through the town, which was made up mostly of ramshackle tin-roofed buildings. The homes and businesses shared the same facade, without signs denoting storefronts from residences you would not tell the difference.
 Many people were outside grilling and listening to music. Whether they were mostly restaurants or just families, I could not tell.
-The smell was wonderful, grilled chicken and fruit, over fire.
+The smell was wonderful, grilled chicken and fruit, lingering in the air as we passed by, until being replaced.
 
-Eventually we arrived at the Airbnb. It appeared to be a repurposed hanger, with the back part converted into living quarters.
+Eventually we arrived at the Airbnb, "Casa Azul", as we direct the motokar driver. We arrive to a very large blue metal hangar door, close to 3 stories tall. 
+The door slides open into enormous room, containing a motorcycle on the right, and a washing machine on the right, with a clothing line stretching across the wall. 
+At the back, the cement floor transitions into laminate, with a combined kitchen and living room, as well as a glass wall forming our hosts bedroom.
+A staircase at the back stretches up to the living quarters, the second floor overlooks the hangar, and is itself a small apartment with bedrooms and a kitchen. 
+The third floor is similarly furnished, and extends up above the hangar room, giving both a view into the hangar and of the town, from the floor to ceiling windows. 
+The 4th floor is the rooftop, with a small square pool in the center, encased in a thick wire mesh.
 We were greeted by the host, who didn't speak any English. He quickly jumped to help us with our luggage, up the 3 flights of stairs at the back.
  "Como te llamas?" he asked me (what is your name). To the horror of my high school Spanish teacher, I responded "Bueno!" and flashed him a thumbs up.
 This became a funny story later, when he told Txana my name was, apparently, "Bueno".
@@ -54,8 +57,8 @@ from the Midwest. I was the youngest at 26.
 
 It was not just people that were there to greet us. Txana had stocked up on the most tobacco I had ever seen in one arrangement in my life.
 This type of tobacco is called Mapacho, and has a much higher nicotine content than the tobacco we are used to in the states. There were 3 options he had brought for everyone.
-Machine rolled cigars in simple, white rolling paper - 800 each size. Along with the cigars, he had brought a pile of rolled and bound leaves called Mazo.
-Each weighed over 3 Lbs and was close to 2 feet long, 3 inches across. The Mazo was the star of the show, and I eagerly grabbed one, as well as a bag of larger cigars.
+Machine rolled cigars in simple, white rolling paper - 800 each size. Along with the cigars, he had brought a pile of rolled rolled tobacco leaves called Mazo.
+Each weighed over 3 Lbs and was close to 2 feet long, 3 inches across, tightly bound by what looked like a thick leather ribbon, with with a deep fragrant smell. The Mazo was the star of the show, and I eagerly grabbed one, throwing it up in the air and catching it to test the heft, as well as a bag of larger cigars.
 In the jungle, it goes by fast, as I would soon learn.
 
 Once I had secured the tobacco, I changed and hopped into the pool on the roof. It was fed by a PVC pipe in the side, and water could be added by turning a red plastic knob.
@@ -108,7 +111,11 @@ We planned to be on the boat by 9 AM. Txana had already taken care of the boat r
 If we got the slow boat the journey would take 6. Breakfast was once again at the same cafe across from our Airbnb, which had served as our second home while
 we were in Pucullpa. We had put our orders in the night before, so that they would be ready in time for us to eat and be at the boat landing in time. In addition to my breakfast, which was
 a controversial decision of strawberry avocado "ice cream" (strawberries, avocados, honey, and ice), I bought an Altar cloth for my desk at the center. Once everyone had eaten, we again
-organized into motokars, which dropped us off at the boat landing. The boat landing was a chaotic place. As I pulled up, laden with luggage, people immediately descended on the motokar
+organized into motokars, which dropped us off at the boat landing. The river is a hub for markets, and on our way there we passed many vendors selling fish and produce that is brought in by boat. 
+The smell of fish takes over, and the sounds of vendors calling to each other, and people haggling fills the air.
+The boat landing itself was a chaotic place, packed with people hauling food and provisions up and down the embankment to long thin boats, wedged together along the river bank. 
+A loudspeaker breaks through the hustle and bustle, barking orders or information, which I could not understand.
+The cement road turns to dirt, lined with deep ruts, cut by countless motokars being pushed as they get stuck in the mud. As I pulled up, laden with luggage, people immediately descended on the motokar
 trying to take my luggage for me. 5 soles was the fair price, but they would ask for 10. I declined, unloading the luggage myself with the help of the motokar driver, and joined the rest
 of the group waiting for our boat. Txana handled the negotiation, and when ready, gave us the signal to load up. The boat was a slender vessel, with just enough room at the front for
 our luggage, and two seats per row. Thankfully, it was the fast boat, and the seats were padded. The journey would take us up the Amazon river, which acts as a sort of main freeway for
@@ -116,15 +123,18 @@ the region. Here in Peru they don't call it the Amazon, however, they call it th
 we started the real voyage to the village of Santa Rosa, and then to the center, was a floating gas station. The opposite bank from the boat landing was lined with these floating gas
 stations. Boats drove up and filled their tanks on the water. A rare time when I would need to extinguish my Mapacho, which I was basically chain-smoking at that point.
 
-The journey upriver was relatively uneventful. The hum of the boat engine soon faded into the background as we grew used to the noise. The engines used there are loud, with long poles
+The journey upriver was long and scenic. The river is massive, serving as a sort of super highway for the region. Passenger boats, fishermen, great barges hauling huge machinery, were all common sights. 
+The great expanse of the amazon surrounds us, the clouds rolling across the sky, distant storms could be seen pouring down onto the dense vegetation.
+The hum of the boat engine soon faded into the background as we grew used to the noise. The engines used there are loud, with long poles
 to attach the propeller, so that it can run right at the surface of the water. We mainly hugged the bank, passing dense vegetation, and occasionally, what appeared to be a Banana farm.
 Our intermediary destination was Santa Rosa, a small town very close to the center which was our final destination. The sparse cell service that we had in the city quickly dropped off
 as we got farther upriver. When we finally arrived in Santa Rosa, we were greeted by a pickup truck motokar hybrid. A large bed in the back for our luggage, but still the front
 being a large motorbike with off road tires. The town was surprisingly nice, with paved roads and lots of people outside walking, working, or cooking. We only passed through the town
 however, and the paved roads faded away into little more than a dirt trail, threatening to catch our caravan of motokars in the mud. We made it through, not without having to get
-out and push at one point, to the lagoon outside of town that we had to cross to get to the center. Once again we loaded into a small, slender boat, making sure to balance the
-weight of the passengers and luggage so that we didn't capsize. We launched from the bank, and puttered across the lagoon to Oja De Luna (Moons Eye in English), which would be our
-home for the next several days. Our hosts were Wagner, who is co-director of the center and was Txana's teacher, and Raquel, Wagner's partner and other co-director of the center.
+out and push at one point, to the lagoon outside of town that we had to cross to get to the center. Once again we loaded into a small, slender boat, making sure to balance the weight of the passengers and luggage so that we didn't capsize. 
+We launched from the bank, into the shockingly blue water, the wake from our boat breaking up the perfectly still surface. 
+The lagoon is our final hurdle before arriving at Oja De Luna (Moons Eye in English), which would be our home for the next several days. 
+Our hosts were Wagner, who is co-director of the center and was Txana's teacher, and Raquel, Wagner's partner and other co-director of the center.
 
 As we arrived, we were first greeted by a hoard of chickens and ducks, which were rooting around at the bank of the lagoon looking for bugs to eat. I walked to the bank first, and they
 surrounded me, probably expecting the new people to bring them food. The birds, and soon as we got closer to the main area, dogs, accompanied us gleefully to the main salon, where
@@ -207,6 +217,7 @@ My whole mouth constricted from the medicine. The substance was intensely astrin
 that remained was a strong bitter taste. It was hard to get down, but I did. After taking the dose, we were instructed to sit still and let it settle in our stomach to prevent our
 bodies from rejecting it immediately. At the risk of upsetting my stomach, I went for water right away to combat the medicine's power. Somehow, I managed not to upset it, and
 made my way to the Salon for my breakfast of boiled eggs, boiled potatoes, and rice.
+This practice continued for 3 days, morning and night, until our bottles of resin were empty.
 
 ### The First Ceremony
 
@@ -362,5 +373,11 @@ thank you, hunched over my purge bucket.
 
 ### The Integration Process
 
-The day following ceremony days, we would spend 
+The day following ceremony days, we would spend integrating our experience. This is a very important part of the process. 
+It is this stage where we make sense of what we just experienced, and find where it fits into our lives.
+During this stage, it is common to feel out of place, as the primal world of the jungle ends, and the creature comforts of modern life return.
+During this time, we are still very energetically sensitive, and avoid physical contact with others, especially sexual contact, as well 
+as maintain a "soft diet" designed to transition us back from the strict salt free diet in the jungle.
+By adhering to this soft diet for 3 weeks after we leave the jungle, we can ensure that the spirit of the master plant can fully settle into our bodies, staying with us for the rest of our lives.
+
 
