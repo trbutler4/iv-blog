@@ -1,0 +1,26 @@
+{{define "article.html"}}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="../../static/style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-title" href="../../">IV</a>
+    </header>
+    <main>
+      <article class="post">
+        <header class="post-header">
+          <time datetime="{{.Article.Date}}">{{.Article.Date}}</time>
+        </header>
+        <div class="prose">
+          {{.Article.HTML}}
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
+{{end}}

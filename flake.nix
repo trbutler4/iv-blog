@@ -1,5 +1,5 @@
 {
-  description = "iv-blog - personal blog built with React + TypeScript";
+  description = "iv-blog - personal blog experiments";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -14,6 +14,9 @@
       {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
+            go
+            gopls
+            gotools
             nodejs_24
             yarn-berry
           ];

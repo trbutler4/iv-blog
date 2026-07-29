@@ -1,0 +1,28 @@
+{{define "index.html"}}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{.Title}}</title>
+    <link rel="stylesheet" href="static/style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-title" href="./">IV</a>
+    </header>
+    <main>
+      <section class="post-list" aria-label="Articles">
+        {{range .Articles}}
+        <article class="post-preview">
+          <time datetime="{{.Date}}">{{.Date}}</time>
+          <h1><a href="{{.URL}}">{{.Title}}</a></h1>
+        </article>
+        {{else}}
+        <p>No articles yet.</p>
+        {{end}}
+      </section>
+    </main>
+  </body>
+</html>
+{{end}}
