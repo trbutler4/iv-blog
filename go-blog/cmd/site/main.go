@@ -204,7 +204,7 @@ func loadArticle(path string, md goldmark.Markdown) (article, error) {
 		Title: fm.Title,
 		Date:  fm.Date,
 		Slug:  fm.Slug,
-		URL:   "articles/" + fm.Slug + "/",
+		URL:   "/articles/" + fm.Slug + "/",
 		HTML:  template.HTML(out.String()),
 	}, nil
 }

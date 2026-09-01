@@ -1,7 +1,24 @@
+@font-face {
+  font-family: "0xProto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/0xproto-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "0xProto";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/0xproto-bold.woff2") format("woff2");
+}
+
 :root {
   color-scheme: light;
   --bg: #faf7f0;
   --fg: #1f1b17;
+  --font-family: "0xProto", ui-monospace, monospace;
   --muted: #756d63;
   --link: #1f1b17;
   --line: #e5ded2;
@@ -15,7 +32,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: var(--font-family);
   font-size: 18px;
   line-height: 1.65;
 }
@@ -38,7 +55,6 @@ a:hover {
 }
 
 .site-title {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 24px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -63,7 +79,6 @@ main {
 .post-preview time,
 .post-header time {
   color: var(--muted);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 13px;
 }
 
