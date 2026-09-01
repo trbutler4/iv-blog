@@ -1,5 +1,5 @@
 {
-  description = "iv-blog - personal blog experiments";
+  description = "iv-blog - static blog generator";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -17,13 +17,7 @@
             go
             gopls
             gotools
-            nodejs_24
-            yarn-berry
           ];
-
-          shellHook = ''
-            export NODE_OPTIONS="--max-old-space-size=4096"
-          '';
         };
       }
     );

@@ -1,4 +1,4 @@
-module go-blog
+module github.com/trbutler4/iv-blog
 
 go 1.22
 
