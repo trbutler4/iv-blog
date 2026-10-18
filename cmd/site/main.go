@@ -130,7 +130,7 @@ func build() error {
 		posts              []article
 	}
 	collections := []collection{
-		{slug: "articles", title: "Articles", empty: "No articles yet."},
+		{slug: "articles", title: "Writing", empty: "No writing yet."},
 		{slug: "poetry", title: "Poetry", empty: "No poems yet."},
 	}
 	for i := range collections {

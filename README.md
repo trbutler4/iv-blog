@@ -1,6 +1,6 @@
 # IV Blog
 
-Dead simple personal site generator in Go, with Home, Articles, and Poetry sections.
+Dead simple personal site generator in Go, with Home, Writing, and Poetry sections.
 
 ## Build
 
@@ -52,7 +52,7 @@ Edit `content/home.md` to update the professional summary on `/`. This is plain
 Markdown, with no frontmatter. Replace the initial placeholder with your bio and
 any contact or professional links.
 
-### Articles
+### Writing
 
 Add Markdown files to `content/articles/` with frontmatter:
 
@@ -74,7 +74,7 @@ Generated article URL:
 /articles/peru/
 ```
 
-Browse all articles at `/articles/`.
+Browse the Writing section at `/articles/`.
 
 ### Poetry
 
