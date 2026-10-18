@@ -3,52 +3,34 @@ package main
 import (
 	"net/http"
 	"net/http/httptest"
-	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
-	"time"
 )
 
 func TestMeganAuthentication(t *testing.T) {
-	auth, err := newMeganAuth()
-	if err != nil {
-		t.Fatal(err)
-	}
 	for _, liveReload := range []bool{false, true} {
-		h := devHandler{hub: newReloadHub(), liveReload: liveReload, auth: auth}
+		h := devHandler{hub: newReloadHub(), liveReload: liveReload}
 		for _, path := range []string{"/megan", "/megan/", "/megan/index.html", "/megan/nested/file", "/%6degan/", "/articles/../megan/", "//megan/"} {
 			for _, method := range []string{http.MethodGet, http.MethodHead} {
 				r := httptest.NewRequest(method, path, nil)
 				w := httptest.NewRecorder()
 				h.ServeHTTP(w, r)
-				if w.Code != http.StatusUnauthorized || w.Header().Get("WWW-Authenticate") != "" {
-					t.Fatalf("%s %s: expected password form without browser auth challenge, got %d", method, path, w.Code)
-				}
-				if method == http.MethodGet && (!strings.Contains(w.Body.String(), `name="password"`) || strings.Contains(w.Body.String(), `name="username"`)) {
-					t.Fatal("expected password-only form")
+				if w.Code != http.StatusUnauthorized || !strings.HasPrefix(w.Header().Get("WWW-Authenticate"), "Basic ") {
+					t.Fatalf("%s %s: expected Basic Auth challenge, got %d", method, path, w.Code)
 				}
 				if w.Header().Get("Cache-Control") != "no-store" {
 					t.Fatalf("%s: missing no-store", path)
 				}
 			}
 		}
-		r := httptest.NewRequest(http.MethodPost, "/megan/login", strings.NewReader("password=wrong-password"))
-		r.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+		r := httptest.NewRequest(http.MethodGet, "/megan/", nil)
+		r.SetBasicAuth("megan", "wrong-password")
 		w := httptest.NewRecorder()
 		h.ServeHTTP(w, r)
 		if w.Code != http.StatusUnauthorized || len(w.Result().Cookies()) != 0 {
 			t.Fatalf("wrong password accepted: %d", w.Code)
-		}
-	}
-	for _, value := range []string{"forged", auth.token(time.Now().Add(-time.Hour)), auth.token(time.Now().Add(time.Hour)) + "tampered"} {
-		r := httptest.NewRequest(http.MethodGet, "/megan/", nil)
-		r.AddCookie(&http.Cookie{Name: sessionCookie, Value: value})
-		w := httptest.NewRecorder()
-		devHandler{auth: auth}.ServeHTTP(w, r)
-		if w.Code != http.StatusUnauthorized {
-			t.Fatalf("invalid session accepted: %s", value)
 		}
 	}
 }
@@ -57,10 +39,6 @@ func TestMeganAuthenticatedPage(t *testing.T) {
 	password := os.Getenv("MEGAN_TEST_PASSWORD")
 	if password == "" {
 		t.Skip("set MEGAN_TEST_PASSWORD to verify the configured password")
-	}
-	auth, err := newMeganAuth()
-	if err != nil {
-		t.Fatal(err)
 	}
 	root := t.TempDir()
 	for _, relative := range []string{"megan", "megan/what-i-love-about-you"} {
@@ -73,7 +51,7 @@ func TestMeganAuthenticatedPage(t *testing.T) {
 		}
 	}
 	for _, liveReload := range []bool{false, true} {
-		h := devHandler{hub: newReloadHub(), liveReload: liveReload, root: root, auth: auth}
+		h := devHandler{hub: newReloadHub(), liveReload: liveReload, root: root}
 		for _, path := range []string{"/megan/", "/megan/what-i-love-about-you/"} {
 			r := httptest.NewRequest(http.MethodGet, path, nil)
 			unauthorized := httptest.NewRecorder()
@@ -81,19 +59,13 @@ func TestMeganAuthenticatedPage(t *testing.T) {
 			if unauthorized.Code != http.StatusUnauthorized || strings.Contains(unauthorized.Body.String(), "Private message") {
 				t.Fatalf("private content exposed at %s", path)
 			}
-			form := url.Values{"password": {password}, "next": {path}}
-			login := httptest.NewRequest(http.MethodPost, "https://example.com/megan/login", strings.NewReader(form.Encode()))
-			login.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-			response := httptest.NewRecorder()
-			h.ServeHTTP(response, login)
-			if response.Code != http.StatusSeeOther || response.Header().Get("Location") != path {
-				t.Fatalf("login failed: %d %s", response.Code, response.Body.String())
+			r.SetBasicAuth("other-user", password)
+			wrongUser := httptest.NewRecorder()
+			h.ServeHTTP(wrongUser, r)
+			if wrongUser.Code != http.StatusUnauthorized {
+				t.Fatalf("non-static user accepted at %s", path)
 			}
-			cookies := response.Result().Cookies()
-			if len(cookies) != 1 || !cookies[0].HttpOnly || !cookies[0].Secure || cookies[0].SameSite != http.SameSiteStrictMode || cookies[0].Path != "/megan" {
-				t.Fatalf("incorrect session cookie: %+v", cookies)
-			}
-			r.AddCookie(cookies[0])
+			r.SetBasicAuth("megan", password)
 			w := httptest.NewRecorder()
 			h.ServeHTTP(w, r)
 			if w.Code != http.StatusOK || !strings.Contains(w.Body.String(), "Private message") {
@@ -103,17 +75,6 @@ func TestMeganAuthenticatedPage(t *testing.T) {
 				t.Fatal("incorrect live reload behavior")
 			}
 		}
-	}
-}
-
-func TestMeganDestination(t *testing.T) {
-	for _, raw := range []string{"https://evil.example/megan/", "//evil.example/megan/", "/articles/", "/megan/../../", "/megan/login", "/megan/..%2farticles/"} {
-		if got := meganDestination(raw); got != "/megan/" {
-			t.Errorf("unsafe destination %q accepted as %q", raw, got)
-		}
-	}
-	if got := meganDestination("/megan/what-i-love-about-you/"); got != "/megan/what-i-love-about-you/" {
-		t.Errorf("lost private document destination: %s", got)
 	}
 }
 

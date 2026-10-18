@@ -171,37 +171,6 @@ main {
   color: var(--muted);
 }
 
-.login-form {
-  display: grid;
-  gap: 12px;
-  max-width: 360px;
-}
-
-.login-form input[type="password"],
-.login-form button {
-  min-width: 0;
-  padding: 10px 14px;
-  border: 1px solid var(--muted);
-  border-radius: 3px;
-  font: inherit;
-}
-
-.login-form input[type="password"] {
-  background: var(--bg);
-  color: var(--fg);
-}
-
-.login-form button {
-  background: var(--fg);
-  color: var(--bg);
-  cursor: pointer;
-}
-
-.login-form :focus-visible {
-  outline: 2px solid var(--fg);
-  outline-offset: 4px;
-}
-
 @media (max-width: 520px) {
   body {
     font-size: 17px;

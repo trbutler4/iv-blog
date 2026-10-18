@@ -21,6 +21,7 @@ import (
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/renderer/html"
+	"golang.org/x/crypto/bcrypt"
 	"gopkg.in/yaml.v3"
 )
 
@@ -37,6 +38,10 @@ const liveReloadScript = `<script>
   events.addEventListener("reload", () => window.location.reload());
 })();
 </script>`
+
+// Keep these credentials in sync with the basic_auth entry in Caddyfile.
+const meganUsername = "megan"
+const meganPasswordHash = "$2a$14$lZuSbdcBQhiXWKPpuYd4IO1iXha32j/BPNTZaZwAUNR/VjWGvzFo2"
 
 type config struct {
 	serve bool
@@ -97,10 +102,6 @@ func serve(cfg config) error {
 	} else if cfg.watch {
 		return errors.New("-dir cannot be combined with -watch")
 	}
-	auth, err := newMeganAuth()
-	if err != nil {
-		return err
-	}
 
 	hub := newReloadHub()
 	if cfg.watch {
@@ -113,7 +114,6 @@ func serve(cfg config) error {
 		hub:        hub,
 		liveReload: cfg.watch,
 		root:       cfg.dir,
-		auth:       auth,
 	})
 }
 
@@ -320,7 +320,6 @@ type devHandler struct {
 	hub        *reloadHub
 	liveReload bool
 	root       string
-	auth       *meganAuth
 }
 
 func (h devHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -328,11 +327,10 @@ func (h devHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if clean == "/megan" || strings.HasPrefix(clean, "/megan/") {
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("X-Robots-Tag", "noindex, nofollow, noarchive")
-		if h.auth == nil {
-			http.Error(w, "authentication unavailable", http.StatusServiceUnavailable)
-			return
-		}
-		if !h.auth.authorize(w, r, clean) {
+		username, password, ok := r.BasicAuth()
+		if !ok || username != meganUsername || bcrypt.CompareHashAndPassword([]byte(meganPasswordHash), []byte(password)) != nil {
+			w.Header().Set("WWW-Authenticate", `Basic realm="Megan", charset="UTF-8"`)
+			http.Error(w, "unauthorized", http.StatusUnauthorized)
 			return
 		}
 	}
