@@ -8,19 +8,15 @@
     <link rel="stylesheet" href="/static/style.css">
   </head>
   <body>
-    <header class="site-header">
-      <a class="site-title" href="/">IV</a>
-    </header>
+    {{template "header" .}}
     <main>
-      <section class="post-list" aria-label="Articles">
-        {{range .Articles}}
-        <article class="post-preview">
-          <time datetime="{{.Date}}">{{.Date}}</time>
-          <h1><a href="{{.URL}}">{{.Title}}</a></h1>
-        </article>
-        {{else}}
-        <p>No articles yet.</p>
-        {{end}}
+      <section class="prose" aria-label="About me">
+        {{.Home}}
+      </section>
+      <section class="home-writing" aria-labelledby="writing-heading">
+        <h2 id="writing-heading">Writing</h2>
+        <p><a href="/articles/">Articles</a> &mdash; experiences and reflections.</p>
+        <p><a href="/poetry/">Poetry</a> &mdash; a space for verse.</p>
       </section>
     </main>
   </body>

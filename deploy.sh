@@ -15,13 +15,14 @@ echo "Building..."
 	go run ./cmd/site
 )
 
-echo "Deploying to $VPS_USER@$VPS_HOST:$DEPLOY_DIR..."
-tar -C "$SCRIPT_DIR/build" -czf - . | ssh "$VPS_USER@$VPS_HOST" \
-	"rm -rf '$NEXT_DIR' && mkdir -p '$NEXT_DIR' && tar -xzf - -C '$NEXT_DIR' && rm -rf '$DEPLOY_DIR' && mv '$NEXT_DIR' '$DEPLOY_DIR'"
-
+# Install route protection before publishing private content.
 echo "Reloading Caddy..."
 scp "$CADDY_CONFIG" "$VPS_USER@$VPS_HOST:$REMOTE_CADDY_CONFIG"
 ssh "$VPS_USER@$VPS_HOST" \
 	"caddy validate --config '$REMOTE_CADDY_CONFIG' --adapter caddyfile && caddy reload --config '$REMOTE_CADDY_CONFIG' --adapter caddyfile"
+
+echo "Deploying to $VPS_USER@$VPS_HOST:$DEPLOY_DIR..."
+tar -C "$SCRIPT_DIR/build" -czf - . | ssh "$VPS_USER@$VPS_HOST" \
+	"rm -rf '$NEXT_DIR' && mkdir -p '$NEXT_DIR' && tar -xzf - -C '$NEXT_DIR' && rm -rf '$DEPLOY_DIR' && mv '$NEXT_DIR' '$DEPLOY_DIR'"
 
 echo "Done."

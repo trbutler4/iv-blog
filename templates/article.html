@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="/static/style.css">
   </head>
   <body>
-    <header class="site-header">
-      <a class="site-title" href="/">IV</a>
-    </header>
+    {{template "header" .}}
     <main>
       <article class="post">
         <header class="post-header">
@@ -19,6 +17,7 @@
         <div class="prose">
           {{.Article.HTML}}
         </div>
+        <p class="back-link"><a href="/{{.Section}}/">Back to {{.Heading}}</a></p>
       </article>
     </main>
   </body>

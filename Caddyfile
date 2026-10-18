@@ -1,5 +1,13 @@
 trbiv.com {
 	root * /home/trbiv/iv-blog
+	@megan path /megan /megan/*
+	header @megan {
+		Cache-Control "no-store"
+		X-Robots-Tag "noindex, nofollow, noarchive"
+	}
+	basic_auth @megan {
+		megan $2a$14$lZuSbdcBQhiXWKPpuYd4IO1iXha32j/BPNTZaZwAUNR/VjWGvzFo2
+	}
 	file_server
 	encode gzip
 }

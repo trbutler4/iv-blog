@@ -20,11 +20,13 @@ import (
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
+	"github.com/yuin/goldmark/renderer/html"
+	"golang.org/x/crypto/bcrypt"
 	"gopkg.in/yaml.v3"
 )
 
 const (
-	contentDir  = "content/articles"
+	contentDir  = "content"
 	staticDir   = "static"
 	templateDir = "templates"
 	buildDir    = "build"
@@ -36,6 +38,9 @@ const liveReloadScript = `<script>
   events.addEventListener("reload", () => window.location.reload());
 })();
 </script>`
+
+// Keep this hash in sync with the /megan basic_auth entry in Caddyfile.
+const meganPasswordHash = "$2a$14$lZuSbdcBQhiXWKPpuYd4IO1iXha32j/BPNTZaZwAUNR/VjWGvzFo2"
 
 type config struct {
 	serve bool
@@ -59,6 +64,10 @@ type article struct {
 
 type pageData struct {
 	Title    string
+	Section  string
+	Heading  string
+	Empty    string
+	Home     template.HTML
 	Articles []article
 	Article  article
 }
@@ -100,9 +109,36 @@ func serve(cfg config) error {
 }
 
 func build() error {
-	articles, err := loadArticles(contentDir)
+	home, err := os.ReadFile(filepath.Join(contentDir, "home.md"))
 	if err != nil {
 		return err
+	}
+	var summary bytes.Buffer
+	if err := goldmark.Convert(home, &summary); err != nil {
+		return err
+	}
+	megan, err := os.ReadFile(filepath.Join(contentDir, "megan.md"))
+	if err != nil {
+		return err
+	}
+	var privateBody bytes.Buffer
+	if err := goldmark.Convert(megan, &privateBody); err != nil {
+		return err
+	}
+	type collection struct {
+		slug, title, empty string
+		posts              []article
+	}
+	collections := []collection{
+		{slug: "articles", title: "Articles", empty: "No articles yet."},
+		{slug: "poetry", title: "Poetry", empty: "No poems yet."},
+	}
+	for i := range collections {
+		posts, err := loadArticles(filepath.Join(contentDir, collections[i].slug))
+		if err != nil {
+			return err
+		}
+		collections[i].posts = posts
 	}
 
 	tmpl, err := template.ParseGlob(filepath.Join(templateDir, "*.html"))
@@ -121,23 +157,44 @@ func build() error {
 	}
 
 	if err := render(tmpl, "index.html", filepath.Join(buildDir, "index.html"), pageData{
-		Title:    "IV",
-		Articles: articles,
+		Title:   "IV",
+		Section: "home",
+		Home:    template.HTML(summary.String()),
 	}); err != nil {
 		return err
 	}
 
-	for _, article := range articles {
-		out := filepath.Join(buildDir, "articles", article.Slug, "index.html")
-		if err := render(tmpl, "article.html", out, pageData{
-			Title:   article.Title + " - IV",
-			Article: article,
+	if err := render(tmpl, "private.html", filepath.Join(buildDir, "megan", "index.html"), pageData{
+		Title: "Megan - IV",
+		Home:  template.HTML(privateBody.String()),
+	}); err != nil {
+		return err
+	}
+
+	for _, collection := range collections {
+		if err := render(tmpl, "list.html", filepath.Join(buildDir, collection.slug, "index.html"), pageData{
+			Title:    collection.title + " - IV",
+			Section:  collection.slug,
+			Heading:  collection.title,
+			Empty:    collection.empty,
+			Articles: collection.posts,
 		}); err != nil {
 			return err
 		}
+		for _, article := range collection.posts {
+			out := filepath.Join(buildDir, collection.slug, article.Slug, "index.html")
+			if err := render(tmpl, "article.html", out, pageData{
+				Title:   article.Title + " - IV",
+				Section: collection.slug,
+				Heading: collection.title,
+				Article: article,
+			}); err != nil {
+				return err
+			}
+		}
 	}
 
-	fmt.Printf("built %d article(s) into %s\n", len(articles), buildDir)
+	fmt.Printf("built home, %d article(s), and %d poem(s) into %s\n", len(collections[0].posts), len(collections[1].posts), buildDir)
 	return nil
 }
 
@@ -151,6 +208,9 @@ func loadArticles(dir string) ([]article, error) {
 		goldmark.WithExtensions(extension.Typographer),
 		goldmark.WithParserOptions(parser.WithAutoHeadingID()),
 	)
+	if filepath.Base(dir) == "poetry" {
+		md.Renderer().AddOptions(html.WithHardWraps())
+	}
 
 	var articles []article
 	for _, entry := range entries {
@@ -163,6 +223,7 @@ func loadArticles(dir string) ([]article, error) {
 		if err != nil {
 			return nil, err
 		}
+		post.URL = "/" + filepath.Base(dir) + "/" + post.Slug + "/"
 		articles = append(articles, post)
 	}
 
@@ -266,6 +327,17 @@ type devHandler struct {
 }
 
 func (h devHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	clean := urlpath.Clean("/" + r.URL.Path)
+	if clean == "/megan" || strings.HasPrefix(clean, "/megan/") {
+		w.Header().Set("Cache-Control", "no-store")
+		w.Header().Set("X-Robots-Tag", "noindex, nofollow, noarchive")
+		username, password, ok := r.BasicAuth()
+		if !ok || username != "megan" || bcrypt.CompareHashAndPassword([]byte(meganPasswordHash), []byte(password)) != nil {
+			w.Header().Set("WWW-Authenticate", `Basic realm="Megan", charset="UTF-8"`)
+			http.Error(w, "unauthorized", http.StatusUnauthorized)
+			return
+		}
+	}
 	if r.URL.Path == "/__reload" {
 		h.hub.handle(w, r)
 		return
