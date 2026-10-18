@@ -21,7 +21,6 @@ import (
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/renderer/html"
-	"golang.org/x/crypto/bcrypt"
 	"gopkg.in/yaml.v3"
 )
 
@@ -39,13 +38,11 @@ const liveReloadScript = `<script>
 })();
 </script>`
 
-// Keep this hash in sync with the /megan basic_auth entry in Caddyfile.
-const meganPasswordHash = "$2a$14$lZuSbdcBQhiXWKPpuYd4IO1iXha32j/BPNTZaZwAUNR/VjWGvzFo2"
-
 type config struct {
 	serve bool
 	watch bool
 	addr  string
+	dir   string
 }
 
 type frontmatter struct {
@@ -77,6 +74,7 @@ func main() {
 	flag.BoolVar(&cfg.serve, "serve", false, "serve the generated site")
 	flag.BoolVar(&cfg.watch, "watch", false, "rebuild and reload when source files change")
 	flag.StringVar(&cfg.addr, "addr", "0.0.0.0:8080", "address for the server")
+	flag.StringVar(&cfg.dir, "dir", "", "serve an existing build directory without rebuilding")
 	flag.Parse()
 
 	var err error
@@ -91,7 +89,16 @@ func main() {
 }
 
 func serve(cfg config) error {
-	if err := build(); err != nil {
+	if cfg.dir == "" {
+		if err := build(); err != nil {
+			return err
+		}
+		cfg.dir = buildDir
+	} else if cfg.watch {
+		return errors.New("-dir cannot be combined with -watch")
+	}
+	auth, err := newMeganAuth()
+	if err != nil {
 		return err
 	}
 
@@ -100,11 +107,13 @@ func serve(cfg config) error {
 		go watchSources(hub)
 	}
 
-	log.Printf("serving %s on %s", buildDir, cfg.addr)
+	log.Printf("serving %s on %s", cfg.dir, cfg.addr)
 
 	return http.ListenAndServe(cfg.addr, devHandler{
 		hub:        hub,
 		liveReload: cfg.watch,
+		root:       cfg.dir,
+		auth:       auth,
 	})
 }
 
@@ -117,14 +126,6 @@ func build() error {
 	if err := goldmark.Convert(home, &summary); err != nil {
 		return err
 	}
-	megan, err := os.ReadFile(filepath.Join(contentDir, "megan.md"))
-	if err != nil {
-		return err
-	}
-	var privateBody bytes.Buffer
-	if err := goldmark.Convert(megan, &privateBody); err != nil {
-		return err
-	}
 	type collection struct {
 		slug, title, empty string
 		posts              []article
@@ -132,6 +133,7 @@ func build() error {
 	collections := []collection{
 		{slug: "articles", title: "Writing", empty: "No writing yet."},
 		{slug: "poetry", title: "Poetry", empty: "No poems yet."},
+		{slug: "megan", title: "Megan", empty: "No documents yet."},
 	}
 	for i := range collections {
 		posts, err := loadArticles(filepath.Join(contentDir, collections[i].slug))
@@ -164,13 +166,6 @@ func build() error {
 		return err
 	}
 
-	if err := render(tmpl, "private.html", filepath.Join(buildDir, "megan", "index.html"), pageData{
-		Title: "Megan - IV",
-		Home:  template.HTML(privateBody.String()),
-	}); err != nil {
-		return err
-	}
-
 	for _, collection := range collections {
 		if err := render(tmpl, "list.html", filepath.Join(buildDir, collection.slug, "index.html"), pageData{
 			Title:    collection.title + " - IV",
@@ -194,7 +189,7 @@ func build() error {
 		}
 	}
 
-	fmt.Printf("built home, %d article(s), and %d poem(s) into %s\n", len(collections[0].posts), len(collections[1].posts), buildDir)
+	fmt.Printf("built home, %d article(s), %d poem(s), and %d private document(s) into %s\n", len(collections[0].posts), len(collections[1].posts), len(collections[2].posts), buildDir)
 	return nil
 }
 
@@ -324,6 +319,8 @@ func copyDir(src, dst string) error {
 type devHandler struct {
 	hub        *reloadHub
 	liveReload bool
+	root       string
+	auth       *meganAuth
 }
 
 func (h devHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -331,10 +328,11 @@ func (h devHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if clean == "/megan" || strings.HasPrefix(clean, "/megan/") {
 		w.Header().Set("Cache-Control", "no-store")
 		w.Header().Set("X-Robots-Tag", "noindex, nofollow, noarchive")
-		username, password, ok := r.BasicAuth()
-		if !ok || username != "megan" || bcrypt.CompareHashAndPassword([]byte(meganPasswordHash), []byte(password)) != nil {
-			w.Header().Set("WWW-Authenticate", `Basic realm="Megan", charset="UTF-8"`)
-			http.Error(w, "unauthorized", http.StatusUnauthorized)
+		if h.auth == nil {
+			http.Error(w, "authentication unavailable", http.StatusServiceUnavailable)
+			return
+		}
+		if !h.auth.authorize(w, r, clean) {
 			return
 		}
 	}
@@ -348,7 +346,11 @@ func (h devHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	file, ok := buildPath(r.URL.Path)
+	root := h.root
+	if root == "" {
+		root = buildDir
+	}
+	file, ok := buildPath(root, r.URL.Path)
 	if !ok {
 		http.NotFound(w, r)
 		return
@@ -383,10 +385,10 @@ func (h devHandler) serveHTML(w http.ResponseWriter, r *http.Request, file strin
 	_, _ = w.Write([]byte(html))
 }
 
-func buildPath(requestPath string) (string, bool) {
+func buildPath(root, requestPath string) (string, bool) {
 	clean := urlpath.Clean("/" + requestPath)
 	rel := strings.TrimPrefix(clean, "/")
-	target := filepath.Join(buildDir, filepath.FromSlash(rel))
+	target := filepath.Join(root, filepath.FromSlash(rel))
 
 	info, err := os.Stat(target)
 	if err != nil {

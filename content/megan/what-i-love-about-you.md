@@ -1,3 +1,9 @@
+---
+title: A Running List of All the Things I Love About You
+date: 2026-10-17
+slug: what-i-love-about-you
+---
+
 # A Running List of All the Things I Love About You
 
 1. Your Laugh

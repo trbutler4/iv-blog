@@ -5,9 +5,7 @@ trbiv.com {
 		Cache-Control "no-store"
 		X-Robots-Tag "noindex, nofollow, noarchive"
 	}
-	basic_auth @megan {
-		megan $2a$14$lZuSbdcBQhiXWKPpuYd4IO1iXha32j/BPNTZaZwAUNR/VjWGvzFo2
-	}
+	reverse_proxy @megan 127.0.0.1:8081
 	file_server
 	encode gzip
 }
